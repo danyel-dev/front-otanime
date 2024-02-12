@@ -1,0 +1,42 @@
+/* ---------- Header ---------- */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+    padding: 5px 50px;
+    /* background-color: red; */
+}
+
+header ul {
+    list-style-type: none;
+    display: flex;
+    gap: 2em;
+}
+
+header ul a:hover {
+    background-color: blue;
+}
+
+header ul a li {
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+/* ---------- Anime List */
+
+.listAnimes {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    gap: 2em 0;
+}
+
+.listAnimes img {
+    width: 160px;
+    height: 200px;
+}
