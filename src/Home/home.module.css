@@ -4,9 +4,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
     padding: 5px 50px;
-    /* background-color: red; */
 }
 
 header ul {
@@ -25,13 +24,57 @@ header ul a li {
     font-size: 14px;
 }
 
-/* ---------- Anime List */
+/* ---------- main --------- */
 
-.listAnimes {
+.mainContainer {
     width: 80%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+
+/* ---------- search anime ---------- */
+
+.searchAnime {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 50px;
+}
+
+.formSearchAnime {
+    position: relative;
+}
+
+.formSearchAnime i {
+    position: absolute;
+    top: 7px;
+    left: 12px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.568);
+}
+
+.searchAnime h1 {
+    width: 700px;
+    font-size: 1.3em;
+    font-family: sans-serif;
+}
+
+.searchAnime input {
+    padding: 6px 12px 6px 32px;
+    border-radius: 3px;
+    width: 500px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+/* ---------- list animes ---------- */
+
+.listAnimes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     justify-items: center;
     gap: 2em 0;
 }

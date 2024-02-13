@@ -15,7 +15,7 @@ export default function Home() {
       }
     }
   
-    axios.get('https://api.jikan.moe/v4/top/anime', config).then(response => 
+    axios.get('https://api.jikan.moe/v4/anime?status=complete', config).then(response => 
     {
       setAnimes(response.data.data)
       console.log(response.data.data)
@@ -23,11 +23,24 @@ export default function Home() {
   }, [])
   
   return (
-    <div className="App">
+    <div className={styles.app}>
       <Header />
 
-      <main className={styles.listAnimes}>
-        {animes.map(anime => <Anime key={anime.mal_id} anime={anime} />)}
+      <main className={styles.mainContainer}>
+        <div className={styles.searchAnime}>
+          <h1>
+            Aqui no otanime você encontra um enorme acervo de animes, pesquise por um anime do seu interrese e veja mais informações.
+          </h1>
+
+          <form className={styles.formSearchAnime}>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Pesquise um anime aqui" />
+          </form>
+        </div>
+
+        <div className={styles.listAnimes}>
+          {animes.map(anime => <Anime key={anime.mal_id} anime={anime} />)}
+        </div>
       </main>
     </div>
   );
