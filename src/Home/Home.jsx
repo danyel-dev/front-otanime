@@ -18,9 +18,9 @@ export default function Home() {
     let url;
 
     if(page) {
-      url = `https://api.jikan.moe/v4/top/anime?page=${page}` 
+      url = `https://api.jikan.moe/v4/seasons/now?page=${page}` 
     } else {
-      url = 'https://api.jikan.moe/v4/top/anime'
+      url = 'https://api.jikan.moe/v4/seasons/now'
     }
 
     axios.get(url).then(response => 
