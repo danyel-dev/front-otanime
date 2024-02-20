@@ -9,7 +9,7 @@ export default function Home() {
   const [currentSeasonAnimes, setCurrentSeasonAnimes] = useState([])
   const [currentSeasonName, setCurrentSeasonName] = useState("")
   const [search, setSearch] = useState("")
-  const [vetor, setVetor] = useState([]);
+  const [pagination, setPagination] = useState([]);
   
   const params = new URLSearchParams(window.location.search);
   const page = params.get('page');
@@ -18,9 +18,9 @@ export default function Home() {
     let url;
 
     if(page) {
-      url = `https://api.jikan.moe/v4/seasons/now?page=${page}` 
+      url = `https://api.jikan.moe/v4/top/anime?page=${page}` 
     } else {
-      url = 'https://api.jikan.moe/v4/seasons/now'
+      url = 'https://api.jikan.moe/v4/top/anime'
     }
 
     axios.get(url).then(response => 
@@ -30,7 +30,7 @@ export default function Home() {
       console.log(response.data.pagination)
 
       const novoVetor = Array.from({ length: response.data.pagination.last_visible_page }, (_, index) => index + 1);
-      setVetor(novoVetor);
+      setPagination(novoVetor);
     })
   }, [page])
   
@@ -71,9 +71,17 @@ export default function Home() {
             {currentSeasonAnimes.map(anime => <Anime key={anime.mal_id} anime={anime} />)}
           </div>
 
-          {vetor.map(item => {
-            return <a href={`?page=${item}`}>{item}</a>
-          })}
+          <nav className={styles.pagination}>
+            <ul>
+              {
+                pagination.map(page => {
+                  return(
+                    <li><a href={`?page=${page}`}>{page}</a></li>
+                  )
+                })
+              }
+            </ul>
+          </nav>
         </div>
       </main>
     </div>

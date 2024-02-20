@@ -32,6 +32,7 @@ header ul a li {
     display: flex;
     flex-direction: column;
     gap: 2em;
+    margin-bottom: 100px;
 }
 
 
@@ -95,4 +96,25 @@ header ul a li {
 .listAnimes img {
     width: 160px;
     height: 200px;
+}
+
+/* ---------- Pagination ---------- */
+
+.pagination {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space:nowrap;
+    padding: 10px;
+}
+
+.pagination ul {
+    list-style-type: none;
+    display: flex;
+    gap: 1em;
+}
+
+.pagination ul li a {
+    padding: 5px 10px;
+    background-color: blue;
+    color: white;
 }
