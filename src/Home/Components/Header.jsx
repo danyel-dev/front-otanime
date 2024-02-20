@@ -4,7 +4,7 @@ export default function Header() {
             <h1>Otanime</h1>
             
             <ul>
-                <a href="google.com"><li>Home</li></a>
+                <a href="/"><li>Home</li></a>
                 <a href="google.com"><li>Login</li></a>
                 <a href="google.com"><li>Contato</li></a>
             </ul>
