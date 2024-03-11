@@ -85,7 +85,7 @@ header ul a li {
     font-size: 1.6em;
 }
 
-.currentSeasonAnimes {
+.seasonAnimes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
