@@ -9,6 +9,8 @@ export default function Home() {
   const [seasonAnimes, setSeasonAnimes] = useState([])
   const [pagination, setPagination] = useState([])
 
+  const [search, setSearch] = useState("")
+
   const params = new URLSearchParams(window.location.search);
   const page = params.get('page');
  
@@ -27,7 +29,45 @@ export default function Home() {
       setPagination(novoVetor);
     })
   }, [page])
+   
+  function handleChangeSearch(e) {
+    setSearch(e.target.value)
+  }
+
+  function handleSubmitForm(e) {
+    e.preventDefault()
+    
+    if(search !== "") {
+      axios.get(`https://api.jikan.moe/v4/anime?q=${search}`).then(response => 
+      {
+        setSeasonAnimes(response.data.data)
+        console.log(response.data)
   
+        const novoVetor = Array.from({ length: response.data.pagination.last_visible_page }, (_, index) => index + 1);
+        setPagination(novoVetor);
+      })
+    }
+  }
+
+  function handleClickButton(e) {
+    e.preventDefault()
+    
+    const pageNumber = parseInt(e.target.text)
+    
+    let url;
+
+    if(search)
+      url = `https://api.jikan.moe/v4/anime?q=${search}&page=${pageNumber}`
+    else
+      url = `https://api.jikan.moe/v4/seasons/now?page=${pageNumber}`
+
+    axios.get(url).then(response => 
+    {
+      setSeasonAnimes(response.data.data)
+      console.log(response.data)
+    })
+  }
+
   return (
     <div className={styles.app}>
       <Header />
@@ -38,9 +78,9 @@ export default function Home() {
             Aqui no otanime você encontra um enorme acervo de animes, pesquise por um anime do seu interrese e veja mais informações.
           </h1>
 
-          <form className={styles.formSearchAnime}>
+          <form className={styles.formSearchAnime} onSubmit={handleSubmitForm}>
             <i className="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Pesquise um anime aqui" />
+            <input type="text" placeholder="Pesquise um anime aqui" value={search} onChange={handleChangeSearch} />
           </form>
         </div>
 
@@ -54,7 +94,7 @@ export default function Home() {
 
         <nav className={styles.pagination}>
           <ul>
-            {pagination.map(page => <li><a href={`/?page=${page}`}>{page}</a></li> )}
+            {pagination.map(page => <li><a href={`/?page=${page}`} onClick={handleClickButton}>{page}</a></li> )}
           </ul>
         </nav>
       </main>
